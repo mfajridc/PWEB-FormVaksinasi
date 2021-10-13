@@ -95,7 +95,7 @@ select {
 }
 .form-control.error small {
   visibility: visible;
-  color: #e74c3c;
+  color: #9e473d;
 }
 .form button {
   background-color: #253852;
