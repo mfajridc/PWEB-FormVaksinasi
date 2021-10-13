@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="alertifyjs/css/alertify.css" />
+
+    <!-- include semantic ui theme  -->
+    <link rel="stylesheet" href="alertifyjs/css/themes/semantic.css" />
+
+    <!-- include alertify script -->
+    <script src="alertifyjs/alertify.js"></script>
+
+    <title>Form Validasi Vaksinasi</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h2>
+          Form Validasi Vaksinasi
+          <i class="fas fa-syringe"></i>
+        </h2>
+      </div>
+      <form class="form" id="form">
+        <div class="form-control">
+          <label> Nama Lengkap</label>
+          <input type="text" placeholder="Nama Lengkap" id="nama" />
+          <i class="fa fa-check-circle"></i>
+          <i class="fa fa-exclamation-circle"></i>
+          <small>Error message</small>
+        </div>
+        <div class="form-control">
+          <label> NRP</label>
+          <input type="text" placeholder="0511194000xxx" id="nrp" />
+          <i class="fa fa-check-circle"></i>
+          <i class="fa fa-exclamation-circle"></i>
+          <small>Error message</small>
+        </div>
+        <div class="form-control">
+          <label> Email</label>
+          <input type="email" placeholder="email@email" id="email" />
+          <i class="fa fa-check-circle"></i>
+          <i class="fa fa-exclamation-circle"></i>
+          <small>Error message</small>
+        </div>
+        <div class="form-control">
+          <label> Departemen</label>
+          <select name="departemen" id="departemen">
+            <option value="0">Pilih Departemen</option>
+            <option value="1">Teknik Informatika</option>
+            <option value="2">Sistem Informasi</option>
+            <option value="3">Teknologi Informasi</option>
+            <option value="4">Teknik Elektro</option>
+            <option value="5">Teknik Komputer</option>
+            <option value="6">Teknik Biomedik</option>
+          </select>
+          <i class="fa fa-check-circle icon-select-sign"></i>
+          <i class="fa fa-exclamation-circle icon-select-sign"></i>
+          <small>Error message</small>
+        </div>
+        <div class="form-control">
+          <label> Alamat</label>
+          <textarea
+            name="alamat"
+            id="alamat"
+            cols="30"
+            rows="3"
+            placeholder="Alamat Lengkap"
+          ></textarea>
+          <i class="fa fa-check-circle"></i>
+          <i class="fa fa-exclamation-circle"></i>
+          <small>Error message</small>
+        </div>
+        <div class="form-control">
+          <label>Apakah sudah menerima vaksinasi covid-19?</label>
+          <br />
+          <select onchange="isVaksin()" id="ketvaksin" name="ket-vaksin">
+            <option value="0">Pilih Status Vaksin</option>
+            <option value="1">Sudah</option>
+            <option value="2">Belum</option>
+          </select>
+          <i class="fa fa-check-circle icon-select-sign"></i>
+          <i class="fa fa-exclamation-circle icon-select-sign"></i>
+          <small>Error message</small>
+        </div>
+        <div id="sudah-vaksin" class="verify-vaksin sudah-vaksin">
+          <h3 class="header-verify-vaksin">
+            Infromasi Telah Melakukan Vaksinasi
+          </h3>
+          <div class="form-control">
+            <label>Jenis Vaksin</label>
+            <select name="jenis-vaksin" id="jenis">
+              <option value="0">Pilih Salah Satu</option>
+              <option value="1">Sinovac</option>
+              <option value="2">AstraZeneca</option>
+              <option value="3">Novavax</option>
+              <option value="4">Sinopharm</option>
+              <option value="5">Moderna</option>
+              <option value="6">Pfizer</option>
+            </select>
+            <i class="fa fa-check-circle icon-select-sign"></i>
+            <i class="fa fa-exclamation-circle icon-select-sign"></i>
+            <small>Error message</small>
+          </div>
+          <div class="form-control">
+            <label>Dosis Ke-</label>
+            <input
+              type="text"
+              name="dosis"
+              placeholder=""
+              class="form-control"
+              id="dosis"
+            />
+            <i class="fa fa-check-circle"></i>
+            <i class="fa fa-exclamation-circle"></i>
+            <small>Error message</small>
+          </div>
+          <div class="form-control">
+            <label>Nomor Sertifikat</label>
+            <input
+              type="text"
+              id="sertifikat"
+              name="no-sertif"
+              placeholder="Sertifikat"
+            />
+            <i class="fa fa-check-circle"></i>
+            <i class="fa fa-exclamation-circle"></i>
+            <small>Error message</small>
+          </div>
+        </div>
+        <div id="belum-vaksin" class="verify-vaksin belum-vaksin">
+          <h3 class="header-verify-vaksin">
+            Infromasi Belum Melakukan Vaksinasi
+          </h3>
+          <div class="form-control">
+            <label>Alasan Belum Vaksinasi</label>
+            <select name="alasan" id="alasan">
+              <option value="0">Pilih Salah Satu</option>
+              <option value="1">
+                Mendapatkan serangan alergi berat <br />
+                asma, atau lupus (dalam waktu kurang dari 3 bulan)
+              </option>
+              <option value="2">
+                Sedang mendapatkan pengobatan untuk gangguan pembekuan darah,
+                kelainan darah, dan defisiensi imun
+              </option>
+              <option value="3">
+                Sedang mendapat pengobatan immunosupressan seperti
+                kortikosteroid, kemoterapi, dan penerima produk darah/transfusi
+              </option>
+              <option value="4">
+                Berstatus sebagai penyintas COVID-19 dalam waktu kurang dari 3
+                bulan
+              </option>
+              <option value="5">
+                Belum ada program vaksinasi COVID-19 di wilayah tempat tinggal
+              </option>
+              <option value="6">Lain-lain (sebutkan)</option>
+            </select>
+            <i class="fa fa-check-circle icon-select-sign"></i>
+            <i class="fa fa-exclamation-circle icon-select-sign"></i>
+            <small>Error message</small>
+          </div>
+          <div class="form-control">
+            <label> Alasan Lain</label>
+            <textarea
+              name="alamat"
+              id="alamat"
+              cols="30"
+              rows="3"
+              id="alasanlain"
+              placeholder="Alasan tambahan"
+            ></textarea>
+            <i class="fa fa-check-circle"></i>
+            <i class="fa fa-exclamation-circle"></i>
+            <small>Error message</small>
+          </div>
+        </div>
+        <button>Submit</button>
+      </form>
+    </div>
+    <script type="text/javascript">
+      //override defaults
+      alertify.defaults.transition = "zoom";
+      alertify.defaults.theme.ok = "ui positive button";
+      alertify.defaults.theme.cancel = "ui black button";
+    </script>
+    <script src="app.js"></script>
+  </body>
+</html>
